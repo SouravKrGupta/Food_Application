@@ -29,7 +29,7 @@ navigate('/');
         <div className="navbar-right">
 
         {searchVisible && (
-          <input type="text" placeholder="Search..." className="search-bar" onChange={handleSearch} />
+          <input type="text" placeholder="Search..." className="search-bar"  />
         )}
         <img src={assets.search_icon} alt='' onClick={toggleSearchBar}/>
             <div className="navbar-search-icon">
