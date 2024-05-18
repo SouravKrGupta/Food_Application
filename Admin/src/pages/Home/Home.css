@@ -1,0 +1,93 @@
+.home-container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .left-column {
+    flex: 2;
+    padding: 24px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+    gap: 5rem;
+  }
+  
+  .card {
+    background-color: tomato;
+    width: 350px;
+    border-radius: 25px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card h1 {
+    font-size: 30px;
+    font-weight: 500;
+  }
+  
+  .card p {
+    font-size: 25px;
+  }
+  
+  .box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  .food-data,
+  .order-data {
+    width: 100%;
+    height: 350px;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+  }
+  
+  .food-data .graph,
+  .order-data .graph {
+    margin-bottom: 10px;
+  }
+  
+  .graph h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .user-data {
+    margin-top: 20px;
+    flex: 1;
+ height: 500px;
+ width: 450px;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    padding: 15px;
+  }
+  
+  .user-data .graph {
+    height: 100%;
+  }
+  
+  .user-data .graph h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: #333;
+  }
+ 

@@ -1,44 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Orders.css";
-import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 import { assets } from "../../assets/assets";
+
 const Orders = ({ url }) => {
   const [orders, setOrders] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2;
+
   const fetchAllOrders = async () => {
     const response = await axios.get(url + "/api/order/list");
     if (response.data.success) {
       setOrders(response.data.data);
-      console.log(response.data.data);
     } else {
       toast.error("Error");
     }
   };
-  const statusHandler =async(event,orderId)=>{
-const response =await axios.post(url+"/api/order/status",{
-  orderId,
-  status:event.target.value
-})
-if(response.data.success){
-  await fetchAllOrders();
-}
-  }
+
+  const statusHandler = async (event, orderId) => {
+    const response = await axios.post(url + "/api/order/status", {
+      orderId,
+      status: event.target.value,
+    });
+    if (response.data.success) {
+      await fetchAllOrders();
+    }
+  };
+
   useEffect(() => {
     fetchAllOrders();
   }, []);
+
+  // Calculate the data to be displayed on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(prevPage => prevPage - 1);
+  };
+
   return (
     <div className="order add">
       <h3>Order page</h3>
       <div className="order-list">
-        {orders.map((order, index) => (
+        {currentItems.map((order, index) => (
           <div key={index} className="order-item">
             <img src={assets.parcel_icon} alt="" />
             <div className="">
               <p className="order-item-food">
-                {order.items.map((item, index) => {
-                  if (index === order.items.length - 1) {
+                {order.items.map((item, idx) => {
+                  if (idx === order.items.length - 1) {
                     return item.name + " x " + item.quantity;
                   } else {
                     return item.name + "x " + item.quantity + ",";
@@ -62,15 +79,20 @@ if(response.data.success){
               </div>
               <p className="order-item-phone">{order.address.phone}</p>
             </div>
-            <p>Items : {order.items.length}</p>
-            <p>${order.amount}</p>
-            <select onChange={(event)=>statusHandler(event,order._id)} value={order.status}>
+            <p>Items: {order.items.length}</p>
+            <p>₹{order.amount}</p>
+            <select onChange={(event) => statusHandler(event, order._id)} value={order.status}>
               <option value="Food Processing">Food Processing</option>
               <option value="Out for delivery">Out for delivery</option>
               <option value="Delivered">Delivered</option>
             </select>
           </div>
         ))}
+      </div>
+      <div className="pagination">
+        <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous</button>
+        <span>Page {currentPage}</span>
+        <button onClick={handleNextPage} disabled={indexOfLastItem >= orders.length}>Next</button>
       </div>
     </div>
   );
