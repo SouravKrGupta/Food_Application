@@ -44,6 +44,8 @@ navigate('/');
                <ul className="navbar-profile-dropdown">
                 <li onClick={()=>navigate('/myorders')}><img src={assets.bag_icon}/><p>Orders</p></li>
                 <hr/>
+                <li onClick={()=>navigate('/profile')}><img src={assets.profile_icon}/><p>Profile</p></li>
+                <hr/>
                 <li onClick={logout}><img src={assets.logout_icon}/><p>Logout</p></li>
                </ul>
               </div>

@@ -1,7 +1,9 @@
 import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
+import { useNavigate } from 'react-router-dom'
 const Footer = () => {
+    const navigate = useNavigate();
   return (
     <div className='footer' id='footer'>
 <div className="footer-content">
@@ -18,22 +20,22 @@ const Footer = () => {
     <div className="footer-content-center">
 <h2>COMPANY</h2>
 <ul>
-    <li>Home</li>
-    <li>About us</li>
-    <li>Delivery</li>
-    <li>Privacy policy</li>
+    <li onClick={() => navigate("/")}>Home</li>
+    <li onClick={() => navigate("/profile")}>About us</li>
+    <li onClick={() => navigate("/myorders")}>Delivery</li>
+    <li >Privacy policy</li>
 </ul>
     </div>
     <div className="footer-content-right">
 <h2>GET IN TOUCH</h2>
 <ul>
     <li>+91 8877760363</li>
-    <li>contact@tomato.com</li>
+    <li>jalpaanexpress@gmail.com</li>
 </ul>
     </div>
 </div>
 <hr />
-<p className="footer-copyright">Copyright 2024 @ Tomato.com - All Right Reserved.</p>
+<p className="footer-copyright">Copyright 2024 @ Jalpaan Express - All Right Reserved.</p>
     </div>
   )
 }
