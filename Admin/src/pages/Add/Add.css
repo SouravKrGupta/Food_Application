@@ -1,37 +1,187 @@
 .add{
-    width: 70%;
-    margin-left: max(5vw,25px);
-    margin-top: 50px;
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
     color: #6d6d6d;
     font-size: 16px;
 }
-.add form {
-    gap:20px;
 
-
+.add h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
 }
+
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.add-img-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.add-img-upload:hover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
 .add-img-upload img{
     width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+
+.add-img-upload p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
 .add-product-name, .add-product-description{
-    width: max(40%,280px);
+    width: 100%;
 }
-.add-product-name input,.add-product-description textarea{
-    padding: 10px;
+
+.add-product-name input,
+.add-product-description textarea{
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
 }
+
+.add-product-name input:focus,
+.add-product-description textarea:focus {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
 .add-category-price{
-    display: flex;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
-.add-category-price select,.add-category-price input{
-    max-width: 120px;
-    padding: 10px;
+
+.add-category-price select,
+.add-category-price input{
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
 }
+
+.add-category-price select:focus,
+.add-category-price input:focus {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
 .add-btn{
-    max-width: 120px;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
     border: none;
-    padding: 10px;
-    background-color: black;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 25px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .add {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .add h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .add form {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .add-category-price {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .add-img-upload img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .add {
+        margin: 15px auto;
+        padding: 10px;
+    }
+
+    .add h1 {
+        font-size: 20px;
+    }
+
+    .add form {
+        padding: 15px;
+        gap: 18px;
+    }
+
+    .add-product-name input,
+    .add-product-description textarea,
+    .add-category-price select,
+    .add-category-price input {
+        padding: 10px 12px;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .add-btn {
+        padding: 12px 25px;
+        font-size: 15px;
+    }
 }

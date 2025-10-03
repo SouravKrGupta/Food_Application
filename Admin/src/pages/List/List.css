@@ -1,56 +1,229 @@
+.list {
+    width: 100%;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.list .header {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #667eea;
+}
+
+.list-table {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
 .list-table-format {
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
     align-items: center;
-    gap: 10px;
-    padding: 12px 15px;
-    border: 1px solid #cacaca;
-    font-size: 13px;
-  }
+    gap: 15px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e1e5e9;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
 
-  .list-table-format.title {
-    background-color: #f9f9f9;
-  }
-  .list-table-format img {
-    width: 50px;
-  }
-  .pagination {
+.list-table-format:last-child {
+    border-bottom: none;
+}
+
+.list-table-format.title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    border-bottom: 2px solid #5a67d8;
+}
+
+.list-table-format.title b {
+    color: white;
+}
+
+.list-table-format:hover {
+    background-color: #f8f9fa;
+}
+
+.list-table-format img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.list-table-format p {
+    margin: 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.list-table-format .cursor {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.list-table-format .cursor:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    
-  }
-  .pagination button {
-    padding: 10px 20px;
-    margin: 0 5px;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 12px 20px;
     border: none;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     cursor: pointer;
-    border-radius: 20px;
-  }
-  .pagination button:disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
-  }
-  .pagination span {
-    margin: 0 10px;
-    font-size: 16px;
-  }
-  .header {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
-  @media (max-width: 600px) {
+
+.pagination button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.pagination button:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.pagination span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    padding: 0 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
     .list-table-format {
-      grid-template-columns: 1fr 3fr 1fr;
-      gap: 15px;
+        grid-template-columns: 0.4fr 2.5fr 1fr 1fr 0.4fr;
+        gap: 12px;
+        padding: 12px 15px;
     }
+
+    .list-table-format img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .list {
+        padding: 15px;
+    }
+
+    .list .header {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .list-table-format {
+        grid-template-columns: 0.3fr 3fr 1fr;
+        gap: 10px;
+        padding: 15px;
+        font-size: 13px;
+    }
+
     .list-table-format.title {
-      display: none;
+        display: none;
     }
-  }
+
+    .list-table-format img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .pagination {
+        margin-top: 20px;
+        gap: 8px;
+    }
+
+    .pagination button {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .pagination span {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .list {
+        padding: 10px;
+    }
+
+    .list .header {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .list-table-format {
+        grid-template-columns: 1fr 2fr;
+        gap: 8px;
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .list-table-format img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .list-table-format p {
+        font-size: 12px;
+    }
+
+    .list-table-format .cursor {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .pagination button {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-width: 80px;
+    }
+
+    .pagination span {
+        font-size: 13px;
+        padding: 0 8px;
+    }
+}
   

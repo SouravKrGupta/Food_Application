@@ -39,11 +39,31 @@ const AdminContextProvider = (props) => {
   };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("adminToken");
-    if (storedToken) {
-      setToken(storedToken);
-      setIsLoggedIn(true);
-    }
+    const validateToken = async () => {
+      const storedToken = localStorage.getItem("adminToken");
+      if (storedToken) {
+        try {
+          // Validate token by making a test request
+          const response = await axios.get(`${url}/api/user/profile`, {
+            headers: { token: storedToken }
+          });
+          if (response.data.success) {
+            setToken(storedToken);
+            setIsLoggedIn(true);
+          } else {
+            // Token is invalid, remove it
+            localStorage.removeItem("adminToken");
+            setIsLoggedIn(false);
+          }
+        } catch (error) {
+          // Token validation failed, remove it
+          localStorage.removeItem("adminToken");
+          setIsLoggedIn(false);
+        }
+      }
+    };
+
+    validateToken();
   }, []);
 
   const contextValue = {

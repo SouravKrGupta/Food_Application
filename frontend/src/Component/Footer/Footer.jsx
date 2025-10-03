@@ -21,7 +21,7 @@ const Footer = () => {
 <h2>COMPANY</h2>
 <ul>
     <li onClick={() => navigate("/")}>Home</li>
-    <li onClick={() => navigate("/profile")}>About us</li>
+    <li onClick={() => navigate("/about")}>About us</li>
     <li onClick={() => navigate("/myorders")}>Delivery</li>
     <li >Privacy policy</li>
 </ul>
@@ -29,13 +29,13 @@ const Footer = () => {
     <div className="footer-content-right">
 <h2>GET IN TOUCH</h2>
 <ul>
-    <li>+91 8877760363</li>
-    <li>jalpaanexpress@gmail.com</li>
+    <li>+91 XXXXXXXXXX</li>
+    <li>support@jalpaanexpress.com</li>
 </ul>
     </div>
 </div>
 <hr />
-<p className="footer-copyright">Copyright 2024 @ Jalpaan Express - All Right Reserved.</p>
+<p className="footer-copyright">Copyright 2025 @ Jalpaan Express - All Right Reserved.</p>
     </div>
   )
 }
