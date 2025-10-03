@@ -41,11 +41,11 @@ const PlaceOder = () => {
     }
     let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}})
     if(response.data.success){
-      const {session_url }=response.data;
-      window.location.replace(session_url);
+      alert("Order placed successfully!");
+      navigate('/myorders');
     }
     else{
-      alert("Error");
+      alert("Error placing order");
     }
   }
 const navigate =useNavigate();
@@ -98,7 +98,7 @@ navigate('/card')
       </div>
 
     </div>
-          <button type="submit">PROCEED TO PAYMENT</button>
+          <button type="submit">PLACE ORDER</button>
         </div>
       </div>
     </form>

@@ -26,7 +26,8 @@ event.preventDefault();
   else{
     newUrl+='/api/user/register'
   }
-  const response = await axios.post(newUrl,data);
+  const requestData = currSate === 'Sign Up' ? { ...data, role: 'user' } : data;
+  const response = await axios.post(newUrl,requestData);
   if (response.data.success) {
        setToken(response.data.token);
        localStorage.setItem("token",response.data.token);

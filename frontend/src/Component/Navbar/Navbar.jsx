@@ -5,35 +5,47 @@ import {Link, useNavigate} from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContext'
 const Navbar = ({setShowLogin}) => {
   const [menu,setMenu] = useState("home");
-  const [searchVisible, setSearchVisible] = useState(false);
-const {getTotalCartAmount,token,setToken} =useContext(StoreContext)
-const navigate= useNavigate();
-const logout = ()=>{
-localStorage.removeItem('token');
-setToken('');
-navigate('/');
+  const [searchQuery, setSearchQuery] = useState('');
+ const {getTotalCartAmount,token,setToken} =useContext(StoreContext)
+ const navigate= useNavigate();
+ const logout = ()=>{
+ localStorage.removeItem('token');
+ setToken('');
+ navigate('/');
 
 }
-  const toggleSearchBar = () => {
-    setSearchVisible(!searchVisible);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/dishes?search=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery('');
+    }
   };
   return (
     <div className='navbar'>
       <Link to='/'> <img src={assets.logo} alt='' className='logo'/></Link> 
         <ul className="navbar-menu">
             <Link  to='/' onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>home</Link>
-            <a href='#explore-menu' onClick={()=>setMenu("menu")} className={menu==="menu"?"active":""}>menu</a>
-            <a href='#app-download' onClick={()=>setMenu("moblie-app")} className={menu==="moblie-app"?"active":""}>moblie-app</a>
-            <a href='#footer' onClick={()=>setMenu("contact-us")} className={menu==="contact-us"?"active":""}>contact us</a>
+            <Link to='/dishes' onClick={()=>setMenu("dishes")} className={menu==="dishes"?"active":""}>menu</Link>
+            <Link to='/about' onClick={()=>setMenu("about")} className={menu==="about"?"active":""}>about</Link>
+            <Link to='/contact' onClick={()=>setMenu("contact")} className={menu==="contact"?"active":""}>contact us</Link>
+            <Link to='/privacy-policy' onClick={()=>setMenu("privacy")} className={menu==="privacy"?"active":""}>privacy policy</Link>
         </ul>
         <div className="navbar-right">
-
-        {searchVisible && (
-          <input type="text" placeholder="Search..." className="search-bar"  />
-        )}
-        <img src={assets.search_icon} alt='' onClick={toggleSearchBar}/>
+        <form onSubmit={handleSearch} className="navbar-search">
+          <input
+            type="text"
+            placeholder="Search dishes..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+          <button type="submit" className="search-btn">
+            <img src={assets.search_icon} alt='' />
+          </button>
+        </form>
             <div className="navbar-search-icon">
-              <Link to='/card'> <img src={assets.basket_icon} alt="" /></Link> 
+              <Link to='/card'> <img src={assets.basket_icon} alt="" /></Link>
                 <div className={getTotalCartAmount()===0?"":"dot"}>
 
                 </div>

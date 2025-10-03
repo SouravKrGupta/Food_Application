@@ -12,3 +12,24 @@
     gap: 30px;
     row-gap: 50px;
 }
+
+.view-more {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.view-more-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: tomato;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.view-more-btn:hover {
+    background-color: #e03e3e;
+}
