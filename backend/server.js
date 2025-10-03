@@ -1,6 +1,7 @@
 // we are using ES6 feature
 import express from 'express'
 import cors from 'cors'
+import morgan from 'morgan'
 import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
@@ -16,6 +17,7 @@ const port =4000
 //middleware
 app.use(express.json())
 app.use(cors());
+app.use(morgan('combined'));
 //db connection
 connectDB();
 

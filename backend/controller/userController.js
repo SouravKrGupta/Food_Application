@@ -33,33 +33,34 @@ const createToken = (id) =>{
 
 // register user
 const registerUser =async (req,res) => {
-  const {name,password,email,phone} = req.body;
-// checking is user already exists
-  try {
-    const exists =await userModel.findOne({email});
-    if (exists) {
-        return res.json({success:false,message:"User already exists"})
-        
-    }
-    // validating email format  & strong password
-    if (!validator.isEmail(email)) {
-        return res.json({success:false,message:"Please enter a vaild email"})
-        
-    }
-    // Validating password strength
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-        return res.json({ success: false, message: "Please enter a strong password (at least 8 characters with at least one uppercase letter, one lowercase letter, one number, and one special character)" });
-    }
-    // hashing user password
-    const salt = await bcrypt.genSalt(10)
-    const hashedpassword = await bcrypt.hash(password,salt);
-    const newUser = new userModel({
-        name:name,
-        email:email,
-        password:hashedpassword,
-        phone:phone
-    })
+   const {name,password,email,phone,role} = req.body;
+ // checking is user already exists
+   try {
+     const exists =await userModel.findOne({email});
+     if (exists) {
+         return res.json({success:false,message:"User already exists"})
+
+     }
+     // validating email format  & strong password
+     if (!validator.isEmail(email)) {
+         return res.json({success:false,message:"Please enter a vaild email"})
+
+     }
+     // Validating password strength
+     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+     if (!passwordRegex.test(password)) {
+         return res.json({ success: false, message: "Please enter a strong password (at least 8 characters with at least one uppercase letter, one lowercase letter, one number, and one special character)" });
+     }
+     // hashing user password
+     const salt = await bcrypt.genSalt(10)
+     const hashedpassword = await bcrypt.hash(password,salt);
+     const newUser = new userModel({
+         name:name,
+         email:email,
+         password:hashedpassword,
+         phone:phone,
+         role: role || 'user'  // Allow setting role, default to 'user'
+     })
      const user = await newUser.save()
      const token  = createToken(user._id)
     //  sendMail(email,"Welcome to Jalpaan Express!",`Dear ${name},\n\nWelcome to Jalpaan Express! We are delighted to have you join our community.\n\nAt Jalpaan Express, we strive to offer you a delightful culinary experience with our authentic flavors and exceptional service.\n\nAs a valued member, you'll have access to our diverse menu of delectable dishes, exclusive offers, and exciting updates.\n\nIf you have any questions or need assistance, please don't hesitate to contact us. We're here to ensure your experience with Jalpaan Express is nothing short of excellent.\n\nOnce again, thank you for choosing Jalpaan Express. We look forward to serving you!\n\nBest regards,\nThe Jalpaan Express Team`)
@@ -91,4 +92,37 @@ const getUsers = async (req, res) => {
   }
 };
 
-export {loginUser,registerUser,getUsers}
+// Get user profile
+const getProfile = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.body.userId).select('-password');
+    if (!user) {
+      return res.json({ success: false, message: "User not found" });
+    }
+    res.json({ success: true, data: user });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error fetching profile" });
+  }
+};
+
+// Update user profile
+const updateProfile = async (req, res) => {
+  try {
+    const { name, phone } = req.body;
+    const user = await userModel.findByIdAndUpdate(
+      req.body.userId,
+      { name, phone },
+      { new: true }
+    ).select('-password');
+    if (!user) {
+      return res.json({ success: false, message: "User not found" });
+    }
+    res.json({ success: true, data: user });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error updating profile" });
+  }
+};
+
+export {loginUser,registerUser,getUsers,getProfile,updateProfile}
