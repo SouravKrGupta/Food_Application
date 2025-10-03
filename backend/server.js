@@ -2,6 +2,7 @@
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
+import colors from 'colors'
 import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
@@ -12,12 +13,16 @@ import orderRouter from './routes/orderRoute.js'
 
 //app config
 const app = express()
-const port =4000
+const port = process.env.PORT || 4000;
+
 
 //middleware
 app.use(express.json())
-app.use(cors());
-app.use(morgan('combined'));
+app.use(cors({
+  origin: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : ["http://localhost:5173", "http://localhost:5174", "http://localhost:5175", "http://localhost:5176"],
+  credentials: true
+}));
+app.use(morgan(':method :url :status :response-time ms - :res[content-length]'.bgMagenta.white));
 //db connection
 connectDB();
 
@@ -31,5 +36,5 @@ app.get("/",(req,res)=>{
 res.send("API Working")
 })
 app.listen(port,()=>{
-    console.log(`Server Started on http://localhost:${port}`);
+    console.log(`🚀 Server Started on http://localhost:${port}`.bgCyan.white);
 })

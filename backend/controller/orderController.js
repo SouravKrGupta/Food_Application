@@ -1,7 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
-import sendMail from "../helpers/senMail.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Placing user order for frontend
@@ -46,20 +45,6 @@ const placeOrder = async (req, res) => {
       cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
     });
 
-    // Fetching user details and order details
-    const user = await userModel.findById(req.body.userId);
-    const orderDetails = await orderModel.findById(newOrder._id);
-
- // Composing email subject and text
- const subject = "Order Placed Successfully!";
- const productDetails = orderDetails.items.map(
-   (item) => `${item.name} - Quantity: ${item.quantity}, Price: ₹${item.price}`
- ).join('\n');
-
- const text = `Dear ${user.name},\n\nYour order has been successfully placed.\n\nTotal Bill: ₹${orderDetails.amount+100}\n\nProduct Details:\n${productDetails}\n\nThank you for choosing us!\n\nBest regards,\nThe Jalpaan Express Team`;
-
-    // Sending email
-    sendMail(user.email, subject, text);
     res.json({ success: true, session_url: session.url });
   } catch (error) {
     console.log(error);

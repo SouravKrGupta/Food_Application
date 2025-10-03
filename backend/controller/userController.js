@@ -2,7 +2,6 @@ import userModel from "../models/userModel.js";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import validator from 'validator'
-import sendMail   from "../helpers/senMail.js";
 
 
 // login user
@@ -18,9 +17,6 @@ const loginUser =async (req,res) =>{
         return res.json({success:false,message:"Invalid credentials"})
     }
     const token = createToken(user._id);
-    // sendMail(email,"Welcome to Jalpaan Express!",`Dear User,\n\nWelcome to Jalpaan Express! We are delighted to have you join our community.\n\nAt Jalpaan Express, we strive to offer you a delightful culinary experience with our authentic flavors and exceptional service.\n\nAs a valued member, you'll have access to our diverse menu of delectable dishes, exclusive offers, and exciting updates.\n\nIf you have any questions or need assistance, please don't hesitate to contact us. We're here to ensure your experience with Jalpaan Express is nothing short of excellent.\n\nOnce again, thank you for choosing Jalpaan Express. We look forward to serving you!\n\nBest regards,\nThe Jalpaan Express Team`)
-      // Send welcome email upon successful login
-      sendWelcomeEmail(user.email, user.name);
     res.json({success:true,token});
  } catch (error) {
     console.log(error);
@@ -63,9 +59,6 @@ const registerUser =async (req,res) => {
      })
      const user = await newUser.save()
      const token  = createToken(user._id)
-    //  sendMail(email,"Welcome to Jalpaan Express!",`Dear ${name},\n\nWelcome to Jalpaan Express! We are delighted to have you join our community.\n\nAt Jalpaan Express, we strive to offer you a delightful culinary experience with our authentic flavors and exceptional service.\n\nAs a valued member, you'll have access to our diverse menu of delectable dishes, exclusive offers, and exciting updates.\n\nIf you have any questions or need assistance, please don't hesitate to contact us. We're here to ensure your experience with Jalpaan Express is nothing short of excellent.\n\nOnce again, thank you for choosing Jalpaan Express. We look forward to serving you!\n\nBest regards,\nThe Jalpaan Express Team`)
-    // Send welcome email upon successful registration
-    sendWelcomeEmail(email, name);
      res.json({success:true,token});
   } catch (error) {
     console.log(error);
@@ -74,13 +67,6 @@ const registerUser =async (req,res) => {
 }
 
 
-// Welcome email function
-const sendWelcomeEmail = (email, name) => {
-  const subject = "Welcome to Jalpaan Express!";
-  const text = `Dear ${name},\n\nWelcome to Jalpaan Express! We are delighted to have you join our community.\n\nAt Jalpaan Express, we strive to offer you a delightful culinary experience with our authentic flavors and exceptional service.\n\nAs a valued member, you'll have access to our diverse menu of delectable dishes, exclusive offers, and exciting updates.\n\nIf you have any questions or need assistance, please don't hesitate to contact us. We're here to ensure your experience with Jalpaan Express is nothing short of excellent.\n\nOnce again, thank you for choosing Jalpaan Express. We look forward to serving you!\n\nBest regards,\nThe Jalpaan Express Team`;
-
-  sendMail(email, subject, text);
-}
 // Fetch all registered users
 const getUsers = async (req, res) => {
   try {
