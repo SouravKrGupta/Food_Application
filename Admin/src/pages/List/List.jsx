@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './List.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { AdminContext } from '../../context/AdminContext';
 
 const List = ({ url }) => {
+  const { token } = useContext(AdminContext);
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -18,7 +20,9 @@ const List = ({ url }) => {
   };
 
   const removeFood = async (foodId) => {
-    const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
+    const response = await axios.post(`${url}/api/food/remove`, { id: foodId }, {
+      headers: { token }
+    });
     await fetchList();
     if (response.data.success) {
       toast.success(response.data.message);

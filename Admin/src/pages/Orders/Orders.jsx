@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Orders.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
+import { AdminContext } from "../../context/AdminContext";
 
 const Orders = ({ url }) => {
+  const { token } = useContext(AdminContext);
   const [orders, setOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2;
 
   const fetchAllOrders = async () => {
-    const response = await axios.get(url + "/api/order/list");
+    const response = await axios.get(url + "/api/order/list", {
+      headers: { token }
+    });
     if (response.data.success) {
       setOrders(response.data.data);
     } else {
@@ -22,6 +26,8 @@ const Orders = ({ url }) => {
     const response = await axios.post(url + "/api/order/status", {
       orderId,
       status: event.target.value,
+    }, {
+      headers: { token }
     });
     if (response.data.success) {
       await fetchAllOrders();
