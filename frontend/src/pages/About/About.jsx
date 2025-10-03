@@ -9,13 +9,15 @@ const About = () => {
         <div className="about-section">
           <h2>Our Story</h2>
           <p>
-            Welcome to Jalpaan Express, your ultimate destination for authentic and delicious food delivery.
-            We are passionate about bringing you the finest culinary experiences right to your doorstep.
+            Founded in 2024, Jalpaan Express emerged from a simple observation: great food should never be hard to find.
+            Our founders, a group of food enthusiasts and technology experts, recognized the gap between exceptional local
+            cuisine and convenient delivery services. What started as a weekend project has evolved into a comprehensive
+            food delivery platform serving thousands of satisfied customers.
           </p>
           <p>
-            Founded with a vision to revolutionize food delivery, Jalpaan Express connects you with the best
-            restaurants and local eateries in your area. Our platform ensures that you get fresh, hot, and
-            delicious meals without compromising on quality or taste.
+            We believe that every meal tells a story, and we're here to help you discover the best culinary narratives
+            in your city. From traditional family recipes passed down through generations to innovative fusion dishes
+            created by passionate chefs, Jalpaan Express connects you with the authentic flavors that make food memorable.
           </p>
         </div>
 
