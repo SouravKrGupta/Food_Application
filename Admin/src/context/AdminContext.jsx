@@ -7,6 +7,7 @@ const AdminContextProvider = (props) => {
   const url = "http://localhost:4000";
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const login = async (email, password) => {
     const response = await axios.post(url + "/api/user/login", { email, password });
@@ -61,6 +62,7 @@ const AdminContextProvider = (props) => {
           setIsLoggedIn(false);
         }
       }
+      setIsLoading(false);
     };
 
     validateToken();
@@ -70,6 +72,7 @@ const AdminContextProvider = (props) => {
     url,
     token,
     isLoggedIn,
+    isLoading,
     login,
     register,
     logout,

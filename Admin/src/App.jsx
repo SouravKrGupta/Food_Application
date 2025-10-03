@@ -14,8 +14,24 @@ import Profile from './pages/Profile/Profile'
 import AdminContextProvider, { AdminContext } from './context/AdminContext'
 
 const ProtectedRoute = ({ children }) => {
-  const { isLoggedIn } = useContext(AdminContext);
-  return isLoggedIn ? children : <Navigate to="/login" />;
+  const { isLoggedIn, isLoading } = useContext(AdminContext);
+
+  if (isLoading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        fontSize: '18px',
+        color: '#666'
+      }}>
+        Loading...
+      </div>
+    );
+  }
+
+  return isLoggedIn ? children : <Navigate to="/" />;
 };
 
 const AppContent = () => {
@@ -25,20 +41,26 @@ const AppContent = () => {
   return (
     <div>
       <ToastContainer/>
-      {isLoggedIn && <Navbar/>}
-      {isLoggedIn && <hr />}
-      <div className="app-content">
-        {isLoggedIn && <Sidebar/>}
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/' element={<ProtectedRoute><Home url={url}/></ProtectedRoute>} />
-          <Route path='/add' element={<ProtectedRoute><Add url={url}/></ProtectedRoute>} />
-          <Route path='/list' element={<ProtectedRoute><List url={url}/></ProtectedRoute>} />
-          <Route path='/orders' element={<ProtectedRoute><Orders url={url}/></ProtectedRoute>} />
-          <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/*' element={
+          <ProtectedRoute>
+            {isLoggedIn && <Navbar/>}
+            {isLoggedIn && <hr />}
+            <div className="app-content">
+              {isLoggedIn && <Sidebar/>}
+              <Routes>
+                <Route path='/' element={<Home url={url}/>} />
+                <Route path='/add' element={<Add url={url}/>} />
+                <Route path='/list' element={<List url={url}/>} />
+                <Route path='/orders' element={<Orders url={url}/>} />
+                <Route path='/profile' element={<Profile />} />
+              </Routes>
+            </div>
+          </ProtectedRoute>
+        } />
+      </Routes>
     </div>
   )
 }
