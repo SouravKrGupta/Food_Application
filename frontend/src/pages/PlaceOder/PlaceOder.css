@@ -1,36 +1,142 @@
-.place-order{
+.place-order {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 50px;
-    margin-top: 100px;
+    gap: clamp(2rem, 5vw, 4rem);
+    margin: 6rem auto 4rem;
+    max-width: 1200px;
+    padding: 0 1.5rem;
+}
 
-}
-.place-order-left{
+.place-order-left {
     width: 100%;
-    max-width: max(30%,500px);
+    max-width: max(30%, 500px);
+    background: rgba(255, 255, 255, 0.98);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(229, 231, 235, 0.5);
 }
-.place-order-left .title{
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 50px;
+
+.place-order-left .title {
+    font-size: clamp(1.75rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: #1f2937;
+    position: relative;
 }
-.place-order-left input{
-    margin-bottom: 15px;
+
+.place-order-left .title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 3rem;
+    height: 3px;
+    background: linear-gradient(to right, #ff6347, #ff7f50);
+    border-radius: 2px;
+}
+.place-order-left input {
+    margin-bottom: 1.25rem;
     width: 100%;
-    padding: 18px;
-    border: 1px solid tomato;
-    border-radius: 4px;
-    outline-color: tomato;
+    padding: 1rem 1.25rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 1rem;
+    color: #4b5563;
+    transition: all 0.2s ease;
+    background-color: #f9fafb;
 }
-.place-order-left .mult-fields{
+
+.place-order-left input:hover {
+    border-color: #d1d5db;
+    background-color: #ffffff;
+}
+
+.place-order-left input:focus {
+    border-color: #ff6347;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.1);
+}
+
+.place-order-left .mult-fields {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
 }
-.place-order-right{
+
+.place-order-right {
     width: 100%;
-    max-width: max(40%,500px);
+    max-width: max(40%, 500px);
+    background: rgba(255, 255, 255, 0.98);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(229, 231, 235, 0.5);
 }
-.place-order-right button{
-    margin-top: 30px;
+
+.place-order-right button {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to right, #ff6347, #ff7f50);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 99, 71, 0.3);
+}
+
+.place-order-right button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 99, 71, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .place-order {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .place-order {
+        flex-direction: column;
+        margin: 5rem auto 3rem;
+        gap: 2rem;
+    }
+
+    .place-order-left,
+    .place-order-right {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .place-order {
+        margin: 4rem auto 2rem;
+        padding: 0 0.75rem;
+    }
+
+    .place-order-left .title {
+        margin-bottom: 2rem;
+    }
+
+    .place-order-left input {
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .place-order-left .mult-fields {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .place-order-right button {
+        padding: 0.875rem;
+        font-size: 0.95rem;
+    }
 }

@@ -23,7 +23,7 @@ const Footer = () => {
     <li onClick={() => navigate("/")}>Home</li>
     <li onClick={() => navigate("/about")}>About us</li>
     <li onClick={() => navigate("/myorders")}>Delivery</li>
-    <li >Privacy policy</li>
+    <li onClick={() => navigate("/privacy-policy")}>Privacy policy</li>
 </ul>
     </div>
     <div className="footer-content-right">
