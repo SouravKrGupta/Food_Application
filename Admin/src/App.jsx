@@ -31,7 +31,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  return isLoggedIn ? children : <Navigate to="/" />;
+  return isLoggedIn ? children : <Navigate to="/login" />;
 };
 
 const AppContent = () => {
