@@ -4,7 +4,7 @@ import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
 const PlaceOder = () => {
-  const { getTotalCartAmount,token,food_list,cartItems,url } = useContext(StoreContext);
+  const { getTotalCartAmount,token,food_list,cartItems,url,clearCart } = useContext(StoreContext);
 
   const [data,setData]=useState({
     firstName:"",
@@ -42,6 +42,7 @@ const PlaceOder = () => {
     let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}})
     if(response.data.success){
       alert("Order placed successfully!");
+      clearCart(); // Clear the cart after successful order
       navigate('/myorders');
     }
     else{

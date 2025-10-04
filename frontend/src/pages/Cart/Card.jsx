@@ -16,6 +16,16 @@ const Card = () => {
     )
   }
 
+  if (getTotalCartAmount() === 0) {
+    return (
+      <div className='cart-empty-message'>
+        <h2>Your cart is empty</h2>
+        <p>Please add items to your cart to proceed to checkout.</p>
+        <button onClick={() => navigate('/')}>Browse Menu</button>
+      </div>
+    )
+  }
+
   return (
     <div className='cart'>
           
