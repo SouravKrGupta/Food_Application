@@ -4,6 +4,49 @@
     padding: 0 1.5rem;
 }
 
+.cart-login-message {
+    text-align: center;
+    margin: 6rem auto 4rem;
+    max-width: 600px;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.cart-login-message h2 {
+    color: #1f2937;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cart-login-message p {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.cart-login-message button {
+    background: linear-gradient(to right, #ff6347, #ff7f50);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 99, 71, 0.3);
+}
+
+.cart-login-message button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 99, 71, 0.4);
+}
+
 .cart-items-title {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;

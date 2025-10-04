@@ -3,8 +3,19 @@ import './Card.css'
 import {StoreContext} from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom'
 const Card = () => {
-  const {cartItems,food_list,removeFromCart,getTotalCartAmount,url} = useContext(StoreContext)
+  const {cartItems,food_list,removeFromCart,getTotalCartAmount,url,token} = useContext(StoreContext)
   const navigate =useNavigate();
+
+  if (!token) {
+    return (
+      <div className='cart-login-message'>
+        <h2>You need to login to proceed to checkout</h2>
+        <p>Please sign in to view your cart and complete your order.</p>
+        <button onClick={() => navigate('/')}>Go to Home</button>
+      </div>
+    )
+  }
+
   return (
     <div className='cart'>
           

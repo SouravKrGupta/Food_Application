@@ -199,7 +199,7 @@
     border-radius: 1.5rem;
     max-width: 550px;
     width: 95%;
-    max-height: 90vh;
+    max-height: 100vh;
     overflow-y: auto;
     position: relative;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
@@ -498,7 +498,7 @@
     .food-details-content {
         width: 98%;
         margin: 10px;
-        max-height: 80vh;
+        max-height: 90vh;
     }
 
     .food-details-image {
