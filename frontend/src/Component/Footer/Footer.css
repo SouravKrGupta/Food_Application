@@ -21,8 +21,14 @@
     align-items: start;
     gap: 20px;
 }
-.footer-content-left img{
-    width: 200px;
+.footer-content-left .logo{
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6347, #ff7f50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .footer-content-left li,.footer-content-right li,.footer-content-center li{
     list-style: none;

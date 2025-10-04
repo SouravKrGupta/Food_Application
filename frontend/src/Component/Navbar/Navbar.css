@@ -5,9 +5,15 @@
     align-items: center;
 }
 .navbar .logo{
-    width: 150px;
-    height: auto;
-    transition: transform 0.3s ease;
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6347, #ff7f50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo:hover {
@@ -138,7 +144,7 @@
 }
 @media (max-width:1050px){
     .navbar .logo{
-        width: 140px;
+        font-size: 22px;
     }
     .navbar-menu{
         gap: 20px;
@@ -159,7 +165,7 @@
 }
 @media (max-width:900px){
     .navbar .logo{
-        width: 120px;
+        font-size: 20px;
     }
     .navbar-menu{
         gap: 15px;
@@ -184,7 +190,7 @@
         padding: 15px 10px;
     }
     .navbar .logo{
-        width: 100px;
+        font-size: 18px;
     }
     .navbar-menu{
         display: none;
@@ -206,7 +212,7 @@
         padding: 10px 5px;
     }
     .navbar .logo{
-        width: 80px;
+        font-size: 16px;
     }
     .navbar-right{
         gap: 10px;

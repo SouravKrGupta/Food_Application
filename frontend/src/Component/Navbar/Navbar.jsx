@@ -23,13 +23,13 @@ const Navbar = ({setShowLogin}) => {
   };
   return (
     <div className='navbar'>
-      <Link to='/'> <img src={assets.logo} alt='Jalpaan Express' className='logo'/></Link>
+      <Link to='/'> <div className='logo'>Jalpaan Express</div></Link>
         <ul className="navbar-menu">
             <Link  to='/' onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>home</Link>
             <Link to='/dishes' onClick={()=>setMenu("dishes")} className={menu==="dishes"?"active":""}>menu</Link>
             <Link to='/about' onClick={()=>setMenu("about")} className={menu==="about"?"active":""}>about</Link>
             <Link to='/contact' onClick={()=>setMenu("contact")} className={menu==="contact"?"active":""}>contact us</Link>
-            <Link to='/privacy-policy' onClick={()=>setMenu("privacy")} className={menu==="privacy"?"active":""}>privacy policy</Link>
+            
         </ul>
         <div className="navbar-right">
         <form onSubmit={handleSearch} className="navbar-search">

@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <div className='footer' id='footer'>
 <div className="footer-content">
-    <div className="footer-content-left">
-<img src={assets.logo} alt="" />
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt at dolorum harum ea fuga facilis, placeat dolorem corporis autem architecto.</p>
+<div className="footer-content-left">
+<div className='logo'>Jalpaan Express</div>
+<p>Jalpaan Express is your go-to platform for delicious, authentic Indian cuisine delivered right to your doorstep. We bring the flavors of India to you with fresh ingredients and fast service.</p>
 <div className="footer-social-icons">
     <img src={assets.facebook_icon} alt="" />
     <img src={assets.twitter_icon} alt="" />
