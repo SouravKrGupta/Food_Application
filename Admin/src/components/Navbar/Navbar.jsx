@@ -15,16 +15,16 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <img className="logo" src={assets.logo} alt="" />
+      <div className='logo'>Jalpaan Express</div>
       <div className="navbar-right">
-        <img
-          className='profile'
-          src={assets.profile_image}
-          alt=""
-          onClick={() => navigate('/profile')}
-          style={{ cursor: 'pointer' }}
-        />
-        <button onClick={handleLogout} className="logout-btn">Logout</button>
+        <div className='navbar-profile'>
+          <img src={assets.profile_image} alt='' />
+          <ul className="navbar-profile-dropdown">
+            <li onClick={()=>navigate('/profile')}><img src={assets.profile_image}/><p>Profile</p></li>
+            <hr/>
+            <li onClick={handleLogout}><img src={assets.parcel_icon}/><p>Logout</p></li>
+          </ul>
+        </div>
       </div>
     </div>
   )

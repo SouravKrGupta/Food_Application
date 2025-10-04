@@ -1,109 +1,200 @@
-.navbar{
+.navbar {
+    padding: 1.25rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.navbar .logo{
-    width: 140px;
-    height: auto;
-    filter: brightness(0) invert(1);
-    transition: transform 0.3s ease;
+.navbar .logo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6347, #ff7f50, #ff8c69);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    letter-spacing: -0.5px;
 }
 
 .navbar .logo:hover {
     transform: scale(1.05);
+    background: linear-gradient(135deg, #ff8c69, #ff7f50, #ff6347);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
-.navbar .profile{
-    width: 45px;
-    height: 45px;
+.navbar-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-profile img {
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid rgba(255,255,255,0.3);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+    border: 2px solid transparent;
 }
 
-.navbar .profile:hover {
-    border-color: white;
+.navbar-profile img:hover {
+    transform: scale(1.05);
+    border-color: #ff6347;
+    box-shadow: 0 0 0 2px rgba(255, 99, 71, 0.1);
+}
+
+.navbar-profile-dropdown {
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 120%;
+    z-index: 1000;
+    min-width: 200px;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-profile:hover .navbar-profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    list-style: none;
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-profile-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.navbar-profile-dropdown img {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.navbar-profile-dropdown li:hover {
+    color: #ff6347;
+    background-color: rgba(255, 99, 71, 0.08);
+    transform: translateX(4px);
+}
+
+.navbar-profile-dropdown li:hover img {
     transform: scale(1.1);
 }
 
 .navbar-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 1.5rem;
+    position: relative;
 }
 
-.logout-btn {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+/* Add a subtle hover effect for interactive elements */
+.navbar-right > * {
+    transition: transform 0.3s ease;
 }
 
-.logout-btn:hover {
+.navbar-right > *:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255,107,107,0.4);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Enhanced Responsive Design */
+@media (max-width: 1050px) {
     .navbar {
-        padding: 12px 15px;
+        padding: 1rem 1.5rem;
     }
-
     .navbar .logo {
-        width: 120px;
+        font-size: 1.5rem;
     }
+}
 
-    .navbar .profile {
-        width: 40px;
-        height: 40px;
+@media (max-width: 900px) {
+    .navbar .logo {
+        font-size: 1.35rem;
     }
+    .navbar-profile-dropdown {
+        min-width: 180px;
+    }
+}
 
+@media (max-width: 750px) {
+    .navbar {
+        padding: 0.875rem 1rem;
+        margin-bottom: 1rem;
+    }
+    .navbar .logo {
+        font-size: 1.25rem;
+    }
     .navbar-right {
-        gap: 15px;
+        gap: 1rem;
     }
-
-    .logout-btn {
-        padding: 8px 16px;
-        font-size: 13px;
+    .navbar-profile img {
+        width: 34px;
+        height: 34px;
+    }
+    .navbar-profile-dropdown li {
+        padding: 0.625rem;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 10px 12px;
+        padding: 0.75rem;
+        border-radius: 8px;
     }
-
     .navbar .logo {
-        width: 100px;
+        font-size: 1.15rem;
     }
-
-    .navbar .profile {
-        width: 35px;
-        height: 35px;
-    }
-
     .navbar-right {
-        gap: 10px;
+        gap: 0.75rem;
     }
-
-    .logout-btn {
-        padding: 6px 12px;
-        font-size: 12px;
+    .navbar-profile img {
+        width: 32px;
+        height: 32px;
+    }
+    .navbar-profile-dropdown {
+        min-width: 160px;
+        right: -10px;
+    }
+    .navbar-profile-dropdown li {
+        gap: 0.5rem;
     }
 }

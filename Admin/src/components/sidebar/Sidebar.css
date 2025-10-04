@@ -1,48 +1,58 @@
-.sidebar{
-    width: 18%;
+.sidebar {
+    width: 20%;
     min-height: 100vh;
-    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-    border: 1px solid #dee2e6;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(229, 231, 235, 0.5);
     border-top: 0;
-    border-right: 2px solid #dee2e6;
-    font-size: max(1vw,10px);
-    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    border-right: 2px solid rgba(229, 231, 235, 0.8);
+    font-size: max(1vw, 10px);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.06);
+    position: relative;
+    z-index: 10;
 }
 
-.sidebar-options{
-    padding-top: 60px;
-    padding-left: 20px;
+.sidebar-options {
+    padding-top: 3.75rem;
+    padding-left: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.875rem;
+    position: sticky;
+    top: 0;
 }
 
-.sidebar-option{
+.sidebar-option {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 1rem;
     border: 2px solid transparent;
-    padding: 12px 15px;
-    border-radius: 10px 0 0 10px;
+    padding: 0.875rem 1.25rem;
+    border-radius: 12px 0 0 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    margin-right: 10px;
+    margin-right: 0.75rem;
+    color: #4b5563;
+    font-weight: 500;
+    letter-spacing: 0.01em;
 }
 
 .sidebar-option:hover {
-    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
-    border-color: #fc8181;
-    transform: translateX(-5px);
-    box-shadow: 0 4px 12px rgba(252, 129, 129, 0.2);
+    background: linear-gradient(135deg, rgba(255, 245, 245, 0.9) 0%, rgba(254, 215, 215, 0.9) 100%);
+    border-color: rgba(252, 129, 129, 0.8);
+    transform: translateX(4px);
+    box-shadow: 0 4px 15px rgba(252, 129, 129, 0.15);
+    color: #e53e3e;
 }
 
-.sidebar-option.active{
-    background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
-    border-color: tomato;
+.sidebar-option.active {
+    background: linear-gradient(135deg, rgba(254, 215, 215, 0.95) 0%, rgba(254, 178, 178, 0.95) 100%);
+    border-color: #ff6347;
     color: #c53030;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(197, 48, 48, 0.3);
+    box-shadow: 0 4px 15px rgba(197, 48, 48, 0.2);
+    transform: translateX(4px);
 }
 
 .sidebar-option.active::before {
