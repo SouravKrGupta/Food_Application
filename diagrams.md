@@ -83,8 +83,8 @@ class Contact {
   +Date createdAt
 }
 
-User ||--o{ Order : places
-Order ||--o{ Food : contains
+User --> Order : places
+Order --> Food : contains
 User --> Food : has in cart
 ```
 
